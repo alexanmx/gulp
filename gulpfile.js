@@ -4,12 +4,11 @@ var data = require('gulp-data');
 var fs = require('fs');
 var path = require('path');
 var less = require('gulp-less');
-var minifyCSS = require('gulp-csso');
 
 gulp.task('html', function () {
-    return gulp.src('templates/*.tmpl')
+    return gulp.src('src/views/*.tmpl')
     .pipe(data(function(file) {
-      return JSON.parse(fs.readFileSync('./templates/' + path.basename(file.path, '.tmpl') + '.json'));
+      return JSON.parse(fs.readFileSync('./src/json/' + path.basename(file.path, '.tmpl') + '.json'));
     }))
     .pipe(nunjucksRender({
       path: 'templates'
@@ -18,9 +17,8 @@ gulp.task('html', function () {
 });
 
 gulp.task('css', function(){
-  return gulp.src('templates/*.less')
+  return gulp.src('src/less/*.less')
     .pipe(less())
-    .pipe(minifyCSS())
     .pipe(gulp.dest('build/css'))
 });
 
