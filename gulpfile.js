@@ -6,12 +6,12 @@ var path = require('path');
 var less = require('gulp-less');
 
 gulp.task('html', function () {
-    return gulp.src('src/views/*.tmpl')
+    return gulp.src('src/views/*.nunj')
     .pipe(data(function(file) {
-      return JSON.parse(fs.readFileSync('./src/json/' + path.basename(file.path, '.tmpl') + '.json'));
+      return JSON.parse(fs.readFileSync('./src/json/' + path.basename(file.path, '.nunj') + '.json'));
     }))
     .pipe(nunjucksRender({
-      path: 'src/json'
+      path: 'src/views'
     }))
     .pipe(gulp.dest('build'));
 });
