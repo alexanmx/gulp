@@ -11,7 +11,7 @@ gulp.task('html', function () {
       return JSON.parse(fs.readFileSync('./src/json/' + path.basename(file.path, '.tmpl') + '.json'));
     }))
     .pipe(nunjucksRender({
-      path: 'templates'
+      path: 'src/json'
     }))
     .pipe(gulp.dest('build'));
 });
